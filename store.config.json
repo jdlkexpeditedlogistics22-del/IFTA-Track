@@ -1,0 +1,61 @@
+{
+  "configVersion": 0,
+  "copyright": "2026 JDLK Expedited Logistics",
+  "apple": {
+    "categories": ["BUSINESS", "UTILITIES"],
+    "info": {
+      "en-US": {
+        "title": "IFTA Track",
+        "subtitle": "GPS mileage & fuel by state",
+        "description": "JDLK IFTA Track is the mileage and fuel-tax companion built for JDLK Expedited Logistics drivers and owner-operators.\n\nUsing GPS, the app automatically records how many miles you drive in each state or province, then breaks those miles down by day, month, quarter, and year so your IFTA reporting is always ready.\n\nFEATURES\n- Automatic GPS mileage tracking by jurisdiction, even while the app runs in the background\n- Fuel purchase logging with the state auto-detected from your current location\n- Fleet average MPG and estimated net taxable gallons per state\n- Multi-vehicle support to keep reports separate for every truck\n- Manual trip entry and back-dating for accurate period totals\n- One-tap CSV or text export and email for any period\n- Full on-device backup and restore\n\nPRIVACY FIRST\nAll of your data stays on your device. There is no account to create and nothing is uploaded to a server.\n\nNote: Continued use of GPS running in the background can decrease battery life.",
+        "keywords": [
+          "IFTA",
+          "mileage",
+          "trucking",
+          "fuel tax",
+          "GPS",
+          "miles",
+          "state",
+          "fleet",
+          "logbook",
+          "quarterly"
+        ],
+        "releaseNotes": "Version 1.1.0 - Updated app branding to IFTA Track with refreshed version details and stability improvements.",
+        "marketingUrl": "https://jdlkexpedited.com",
+        "supportUrl": "https://jdlkexpedited.com/support",
+        "privacyPolicyUrl": "https://jdlkexpedited.com/privacy"
+      }
+    },
+    "advisory": {
+      "alcoholTobaccoOrDrugUseOrReferences": "NONE",
+      "contests": "NONE",
+      "gamblingSimulated": "NONE",
+      "horrorOrFearThemes": "NONE",
+      "matureOrSuggestiveThemes": "NONE",
+      "medicalOrTreatmentInformation": "NONE",
+      "profanityOrCrudeHumor": "NONE",
+      "sexualContentGraphicAndNudity": "NONE",
+      "sexualContentOrNudity": "NONE",
+      "violenceCartoonOrFantasy": "NONE",
+      "violenceRealistic": "NONE",
+      "violenceRealisticProlongedGraphicOrSadistic": "NONE",
+      "gambling": false,
+      "unrestrictedWebAccess": false,
+      "kidsAgeBand": null,
+      "ageRatingOverride": "NONE",
+      "koreaAgeRatingOverride": "NONE"
+    },
+    "release": {
+      "automaticRelease": false,
+      "phasedRelease": false
+    },
+    "review": {
+      "firstName": "JDLK",
+      "lastName": "Operations",
+      "email": "contact@jdlkexpedited.com",
+      "phone": "+1 555 555 5555",
+      "demoRequired": false,
+      "notes": "No account or login is required. On first launch, allow location access (choose Always) so the app can record mileage by state while driving. All data is stored only on the device; nothing is uploaded to a server."
+    }
+  }
+}

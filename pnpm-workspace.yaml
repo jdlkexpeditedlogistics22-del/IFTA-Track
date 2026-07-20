@@ -1,0 +1,61 @@
+# Powered by OnSpace.AI
+#
+# WHY THIS FILE EXISTS
+# --------------------
+# The Android build kept compiling expo-modules-core@2.5.0 into this Expo
+# SDK 53 project (react-native 0.79.6). 2.5.0 is a newer-SDK build compiled
+# against a newer RN / Gradle / Kotlin toolchain than SDK 53 provides, so its
+# ENTIRE Android compile classpath resolves to nothing:
+#
+#     .../expo-modules-core@2.5.0/.../Permissions.java: cannot find symbol
+#       import androidx.annotation.NonNull;                 <- androidx missing
+#     .../Promise.java: package kotlin does not exist
+#       @NonNull final expo.modules.kotlin.Promise promise; <- expo.modules.kotlin missing
+#     .../ReactNativeHostHandler.java: package com.facebook.react.bridge does not exist
+#
+# CRUCIAL EVIDENCE: every OTHER native module compiles fine (FROM-CACHE) in the
+# very same isolated .pnpm/ layout — ONLY expo-modules-core@2.5.0 fails. So this
+# is a VERSION problem, not a node_modules-layout problem. The fix is to force
+# expo-modules-core back onto the SDK 53 2.4.x line via a pnpm `override`.
+#
+# WHY THE PREVIOUS OVERRIDE DID NOT TAKE EFFECT
+# ---------------------------------------------
+# The earlier version of this file mixed pnpm-v10-only INSTALL SETTINGS
+# (nodeLinker, shamefullyHoist, frozenLockfile, preferFrozenLockfile,
+# strictPeerDependencies) INTO pnpm-workspace.yaml. The build server's pnpm does
+# not recognize those keys in this file; the unknown keys make it reject/ignore
+# the whole workspace manifest — which silently dropped the `overrides` block
+# alongside them, so expo-modules-core kept resolving to 2.5.0.
+#
+# THE FIX
+# -------
+# Keep pnpm-workspace.yaml to ONLY the keys pnpm accepts here — `packages` and
+# `overrides` — so the version pin parses and applies. All install-behavior
+# settings (node-linker=hoisted, frozen-lockfile=false, shamefully-hoist,
+# strict-peer-dependencies=false) live in .npmrc, where they are read and where
+# they cannot invalidate this manifest.
+#
+# `packages: []` keeps this a plain single-project repo (no workspace members).
+packages: []
+
+# Force these packages to a single, correct version across the ENTIRE dependency
+# graph, applied during resolution regardless of the ignored .pnpmfile.cjs hook.
+overrides:
+  # Keep expo-modules-core on the Expo SDK 53 line (>=2.4.0 <2.5.0), never the
+  # SDK-54-era 2.5.0 build that breaks the Android javac classpath.
+  expo-modules-core: "~2.4.0"
+
+  # Pin @react-native/codegen to the STABLE version matching react-native@0.79.6.
+  #
+  # The build otherwise resolves @react-native/codegen@0.79.0-rc.4 — a PRERELEASE
+  # nested under @react-native/babel-plugin-codegen — whose parser throws on
+  # valid `codegenNativeComponent<NativeProps>(...)` specs while Metro bundles
+  # react-native-safe-area-context / react-native-screens, aborting the bundle.
+  #
+  # IMPORTANT — use a RANGE, not the exact "0.79.6": @react-native/codegen is NOT
+  # published at every react-native patch, so an exact "0.79.6" cannot resolve
+  # and the pin silently no-ops (which let the rc.4 prerelease win). A range
+  # (>=0.79.0 <0.80.0) resolves to whatever stable 0.79.x IS published and, per
+  # semver, EXCLUDES the 0.79.0-rc.4 prerelease.
+  "@react-native/codegen": "~0.79.0"
+  "@react-native/babel-plugin-codegen": "~0.79.0"

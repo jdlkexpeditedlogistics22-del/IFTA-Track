@@ -1,0 +1,74 @@
+{
+  "expo": {
+    "name": "IFTA Track",
+    "slug": "ifta-track",
+    "version": "1.3.9",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "description": "GPS IFTA mileage and fuel-tax tracker for JDLK Expedited Logistics. Automatically records state-by-state distance and fuel purchases on-device for accurate quarterly IFTA reporting.",
+    "primaryColor": "#F5A623",
+    "orientation": "default",
+    "icon": "./assets/images/app-icon.png",
+    "scheme": "iftatrack",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.jdlkexpedited.iftatrack",
+      "buildNumber": "21",
+      "infoPlist": {
+        "UIBackgroundModes": ["location"],
+        "ITSAppUsesNonExemptEncryption": false,
+        "NSLocationWhenInUseUsageDescription": "JDLK IFTA Track uses your precise location to record mileage by state while you drive.",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "JDLK IFTA Track keeps recording mileage by state in the background so your IFTA totals stay accurate while the app is minimized."
+      }
+    },
+    "android": {
+      "package": "com.jdlkexpedited.iftatrack",
+      "versionCode": 21,
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/app-icon.png",
+        "backgroundColor": "#FFFFFF"
+      },
+      "edgeToEdgeEnabled": true,
+      "permissions": [
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_BACKGROUND_LOCATION",
+        "FOREGROUND_SERVICE",
+        "FOREGROUND_SERVICE_LOCATION"
+      ]
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "single",
+      "favicon": "./assets/images/app-icon.png"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/images/app-icon.png",
+          "imageWidth": 200,
+          "resizeMode": "contain",
+          "backgroundColor": "#FFFFFF"
+        }
+      ],
+      "expo-web-browser",
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "JDLK IFTA Track uses your precise location to record mileage by state while you drive.",
+          "locationAlwaysAndWhenInUsePermission": "JDLK IFTA Track keeps recording mileage by state in the background so your IFTA totals stay accurate while the app is minimized.",
+          "isAndroidBackgroundLocationEnabled": true,
+          "isAndroidForegroundServiceEnabled": true
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}
